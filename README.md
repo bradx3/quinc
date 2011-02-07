@@ -10,7 +10,7 @@ Process and distribute files. Hopefully easily.
 
 ## Usage
 
-    quinc = Quinc.new("~/Pictures/")
+    quinc = Quinc::Quinc.new("~/Pictures/")
 
     # Only distribute files modified in the last three days
     quinc.file_processors << Quinc::Processors::FileModTime.new(3.days.ago)
@@ -26,6 +26,7 @@ Process and distribute files. Hopefully easily.
     quinc.destinations << Quinc::Destinations::S3("bucket_name", "authorization")
     quinc.destinations << Quinc::Destinations::SFTP("host", "path")
 
+    quinc.sync
 
 ## Extension
 
