@@ -14,11 +14,14 @@ Process and distribute files. Hopefully easily.
 
     # Only distribute files modified in the last three days
     quinc.file_processors << Quinc::Processors::FileModTime.new(3.days.ago)
+
     # Only distribute image files
     quinc.file_processors << Quinc::Processors::FilterByExtension.new("png", "gif", "jpg")
+
     # Make a thumbnail of each of the image files and distribute those too
     quinc.file_processors << Quinc::Processors::ThumbnailImages(:size => "300x200", :filename_prefix => "thumb-")
 
+    # Destinations wil be copied to in order added to quinc
     quinc.destinations << Quinc::Destinations::FileSystem("/path/to/destination")
     quinc.destinations << Quinc::Destinations::S3("bucket_name", "authorization")
     quinc.destinations << Quinc::Destinations::SFTP("host", "path")
