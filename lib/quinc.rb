@@ -1,0 +1,3 @@
+module Quinc
+  # Your code goes here...
+end
