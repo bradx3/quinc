@@ -3,9 +3,10 @@ module Quinc
   class Quinc
     attr_accessor :file_processors
     attr_accessor :destinations
+    attr_reader :path
 
     def initialize(path)
-      self.path = path
+      @path = path
       self.file_processors = []
       self.destinations = []
     end
