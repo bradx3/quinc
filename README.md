@@ -10,7 +10,8 @@ Process and distribute files. Hopefully easily.
 
 ## Usage
 
-    quinc = Quinc::Quinc.new("~/Pictures/")
+    # By default the Sources::Basic file source is used
+    quinc = Quinc::Quinc.new("~/Pictures")
 
     # Only distribute files modified in the last three days
     quinc.file_processors << Quinc::Processors::FileModTime.new(3.days.ago)
@@ -29,6 +30,8 @@ Process and distribute files. Hopefully easily.
     quinc.sync
 
 ## Extension
+
+Sources can be any class with a #files method. The source can then be set on a quinc object to use that source instead of the default.
 
 Processors can be any class with a #process method. The processor will be given an array of files. That array should be filtered, added to, and returned.
 

@@ -10,6 +10,14 @@ describe Quinc::Quinc do
 
   after { FileUtils.remove_entry_secure(@dir) }
 
+  context "with no source specified" do
+    it "should have a basic source" do
+      @quinc.source.should_not be_nil
+      @quinc.source.class.should == Quinc::Sources::Basic
+      @quinc.source.path.should == @dir
+    end
+  end
+
   context "with a test processor" do
     before do
       @processor = TestProcessor.new
