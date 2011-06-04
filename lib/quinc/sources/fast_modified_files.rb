@@ -9,7 +9,7 @@ module Quinc
       attr_reader :modified_since
 
       def initialize(path, modified_since)
-        @path = path
+        @path = File.expand_path(path)
         @modified_since = modified_since
       end
 

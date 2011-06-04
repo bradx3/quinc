@@ -63,7 +63,7 @@ end
 class TestDestination
   attr_reader :sent
 
-  def send(files)
+  def send(path, files)
     @sent = true
   end
 end
