@@ -2,17 +2,24 @@ Dir.glob(File.join(File.dirname(__FILE__), "**", "*.rb")).each do |f|
   require f
 end
 
+require 'active_support/core_ext/class/attribute_accessors'
+
 module Quinc
 
   class Quinc
     attr_accessor :source
     attr_accessor :file_processors
     attr_accessor :destinations
+    cattr_accessor :logger
 
     def initialize(path = nil)
       self.file_processors = []
       self.destinations = []
       self.source = Sources::Basic.new(path) if path
+
+      if not defined?(RSpec)
+        self.logger ||= Logger.new(STDOUT)
+      end
     end
 
     def files
@@ -41,11 +48,11 @@ module Quinc
       files
     end
 
-    def self.log(msg)
-      puts(msg)
+    def self.log(msg, severity = Logger::INFO)
+      logger.add(severity, msg) if logger
     end
-    def log(msg)
-      self.class.log(msg)
+    def log(msg, severity = Logger::INFO)
+      self.class.log(msg, severity)
     end
 
     protected
@@ -57,5 +64,4 @@ module Quinc
     end
 
   end
-
 end
