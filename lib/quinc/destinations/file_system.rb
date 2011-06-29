@@ -1,3 +1,6 @@
+require 'fileutils'
+require 'pathname'
+
 module Quinc
   module Destinations
 
