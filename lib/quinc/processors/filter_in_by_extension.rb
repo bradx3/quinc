@@ -1,7 +1,7 @@
 module Quinc
   module Processors
 
-    class FilterByExtension
+    class FilterInByExtension
       attr_reader :extensions
 
       def initialize(*extensions)
