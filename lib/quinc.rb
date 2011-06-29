@@ -15,13 +15,16 @@ module Quinc
       self.source = Sources::Basic.new(path) if path
     end
 
+    def files
+      if @files.nil?
+        @files = source.files
+        file_processors.each { |fp| @files = fp.process(@files) }
+      end
+      @files
+    end
+
     def sync
-      files = source.files
-
-      file_processors.each { |fp| files = fp.process(files) }
-
       destinations.each { |d| d.send(source.path, partial_file_paths(files)) }
-
       files
     end
 
