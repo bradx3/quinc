@@ -18,6 +18,7 @@ Process and distribute files. Hopefully easily.
 
     # Only distribute image files
     quinc.file_processors << Quinc::Processors::FilterInByExtension.new("png", "gif", "jpg")
+    quinc.file_processors << Quinc::Processors::FilterOutByRegex.new(/\.git/, ".DS_Store")
 
     # Make a thumbnail of each of the image files and distribute those too
     quinc.file_processors << Quinc::Processors::ThumbnailImages.new(:size => "300x200", :filename_prefix => "thumb-")
