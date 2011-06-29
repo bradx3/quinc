@@ -11,6 +11,10 @@ module Quinc
       def process(files)
         files.select { |f| File.mtime(f) >= start_time }
       end
+
+      def to_s
+        "#{ self.class.name } - #{ start_time }"
+      end
     end
 
   end

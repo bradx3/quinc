@@ -40,6 +40,10 @@ module Quinc
           end
         end
       end
+
+      def to_s
+        "#{ self.class.name } - #{ user }@#{ host }:#{ path }"
+      end
     end
 
   end

@@ -11,6 +11,10 @@ module Quinc
       def process(files)
         files.select { |f| extensions.include?(File.extname(f).downcase) }
       end
+
+      def to_s
+        "#{ self.class.name } - #{ extensions.join(", ") }"
+      end
     end
 
   end

@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency("net-sftp", ["~> 2.0.5"])
+  s.add_dependency("activesupport", ["~> 3.0.7"])
 end

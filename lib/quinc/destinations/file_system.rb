@@ -19,6 +19,10 @@ module Quinc
           FileUtils.cp(File.join(path, f), dest)
         end
       end
+
+      def to_s
+        "#{ self.class.name } - #{ destination }"
+      end
     end
 
   end

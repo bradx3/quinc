@@ -20,6 +20,10 @@ module Quinc
       def fingerprint_file?(f)
         f.index(marker) && File.exists?(f)
       end
+
+      def to_s
+        "#{ self.class.name }"
+      end
     end
 
   end

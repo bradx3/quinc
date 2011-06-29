@@ -32,6 +32,10 @@ module Quinc
 
         "#{ basename }#{ marker }#{ digest_for(f) }#{ extname }"
       end
+
+      def to_s
+        "#{ self.class.name } - #{ marker }"
+      end
     end
 
   end

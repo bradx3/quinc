@@ -18,14 +18,34 @@ module Quinc
     def files
       if @files.nil?
         @files = source.files
-        file_processors.each { |fp| @files = fp.process(@files) }
+        log("#{ @files.length } files loaded from source")
+
+        file_processors.each do |fp|
+          @files = fp.process(@files)
+          log("#{ @files.length } files after processing with #{ fp }")
+        end
+        log("#{ @files.length } files after all processing")
       end
+
       @files
     end
 
     def sync
-      destinations.each { |d| d.send(source.path, partial_file_paths(files)) }
+      paths = partial_file_paths(files)
+
+      destinations.each do |d|
+        log("Sending files to #{ d }")
+        d.send(source.path, paths)
+      end
+
       files
+    end
+
+    def self.log(msg)
+      puts(msg)
+    end
+    def log(msg)
+      self.class.log(msg)
     end
 
     protected
