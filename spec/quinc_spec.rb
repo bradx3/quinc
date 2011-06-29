@@ -45,8 +45,8 @@ describe Quinc::Quinc do
       @files = @quinc.sync
     end
 
-    it "should call send on destinations" do
-      @destination.sent.should be_true
+    it "should call transfer on destinations" do
+      @destination.transferred.should be_true
     end
   end
 end
@@ -61,9 +61,9 @@ class TestProcessor
 end
 
 class TestDestination
-  attr_reader :sent
+  attr_reader :transferred
 
-  def send(path, files)
-    @sent = true
+  def transfer(src, dest)
+    @transferred = true
   end
 end

@@ -38,11 +38,14 @@ module Quinc
     end
 
     def sync
-      paths = partial_file_paths(files)
+      partial_paths = partial_file_paths(files)
 
       destinations.each do |d|
         log("Sending files to #{ d }")
-        d.send(source.path, paths)
+        files.zip(partial_paths).each do |src, dest|
+          log("Transferring #{ src } to #{ dest } on #{ d }", Logger::DEBUG)
+          d.transfer(src, dest)
+        end
       end
 
       files
@@ -51,6 +54,7 @@ module Quinc
     def self.log(msg, severity = Logger::INFO)
       logger.add(severity, msg) if logger
     end
+
     def log(msg, severity = Logger::INFO)
       self.class.log(msg, severity)
     end

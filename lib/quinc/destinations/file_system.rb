@@ -11,13 +11,12 @@ module Quinc
         @destination = File.join(File.expand_path(destination), "/")
       end
 
-      def send(path, files)
+      def transfer(src, dest)
         FileUtils.mkdir_p(destination)
-        files.each do |f|
-          dest = Pathname.new(File.join(destination, f))
-          FileUtils.mkdir_p(dest.parent)
-          FileUtils.cp(File.join(path, f), dest)
-        end
+
+        dest = Pathname.new(File.join(destination, dest))
+        FileUtils.mkdir_p(dest.parent)
+        FileUtils.cp(src, dest)
       end
 
       def to_s
