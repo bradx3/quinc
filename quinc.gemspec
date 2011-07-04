@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency("net-sftp", ["~> 2.0.5"])
   s.add_dependency("activesupport", ["~> 3.0.7"])
+  s.add_dependency("fog", ["~> 0.9.0"])
 end
