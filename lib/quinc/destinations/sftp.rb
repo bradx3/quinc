@@ -15,12 +15,15 @@ module Quinc
         @user = user
       end
 
-      def transfer(src, dest)
+      def transfer(root, files)
         Net::SFTP.start(host, user) do |sftp|
-          dest = File.join(path, f)
+          files.each do |f|
+            src = File.join(root, f)
+            dest = File.join(path, f)
 
-          create_remote_path(sftp, dest)
-          sftp.upload!(src, dest)
+            create_remote_path(sftp, dest)
+            sftp.upload!(src, dest)
+          end
         end
       end
 

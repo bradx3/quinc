@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'tmpdir'
 
-describe Quinc::Processors::FilterByExtension do
+describe Quinc::Processors::FilterInByExtension do
   before do
     @dir = Dir.mktmpdir
     @quinc = Quinc::Quinc.new(@dir)
@@ -14,7 +14,7 @@ describe Quinc::Processors::FilterByExtension do
       @wrong = FileUtils.touch(File.join(@dir, "wrong.png")).first
       @right1 = FileUtils.touch(File.join(@dir, "right.jpg")).first
       @right2 = FileUtils.touch(File.join(@dir, "right.BMP")).first
-      @quinc.file_processors << Quinc::Processors::FilterByExtension.new("jpg", "bmp")
+      @quinc.file_processors << Quinc::Processors::FilterInByExtension.new("jpg", "bmp")
       @files = @quinc.sync
     end
 

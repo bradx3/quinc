@@ -10,8 +10,11 @@ module Quinc
         self.marker = marker
       end
 
-      def transfer(src, dest)
-        FileUtils.remove(src) if fingerprint_file?(src)
+      def transfer(root, paths)
+        paths.each do |path|
+          file = File.join(root, path)
+          FileUtils.remove(file) if fingerprint_file?(file)
+        end
       end
 
       def fingerprint_file?(f)

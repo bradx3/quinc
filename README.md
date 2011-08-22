@@ -36,7 +36,7 @@ Sources can be any class with a #files method. The source can then be set on a q
 
 Processors can be any class with a #process method. The processor will be given an array of files. That array should be filtered, added to, and returned.
 
-Destinations can be any class with a #transfer method. The destination will be a root path, and a partial path to be copied to. It is up to the destination class to combine the partial path with any server path (etc) and then copy.
+Destinations can be any class with a #transfer method. The destination will be a root path, and a list of partial paths to be copied. It is up to the destination class to combine the partial path with any server path (etc) and then copy.
 
 ## Copyright
 

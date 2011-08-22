@@ -10,7 +10,6 @@ module Quinc
 
       def initialize(path, modified_since)
         @path = File.expand_path(path)
-        @path += "/" unless @path[-1] == "/"
         @modified_since = modified_since.to_time
       end
 

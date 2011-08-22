@@ -42,10 +42,11 @@ module Quinc
 
       destinations.each do |d|
         log("Sending files to #{ d }")
-        files.zip(partial_paths).each do |src, dest|
-          log("Transferring #{ src } to #{ dest } on #{ d }", Logger::DEBUG)
-          d.transfer(src, dest)
-        end
+        d.transfer(source.path, partial_paths)
+        # files.zip(partial_paths).each do |src, dest|
+        #   log("Transferring #{ src } to #{ dest } on #{ d }", Logger::DEBUG)
+        #   d.transfer(src, dest)
+        # end
       end
 
       files
