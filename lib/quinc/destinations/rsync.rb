@@ -12,24 +12,26 @@ module Quinc
         @options = options
       end
 
-      def transfer(src, dest)
-        cmd = command(src, dest)
+      def transfer(src, paths)
+        cmd = command(src, paths)
         puts(cmd)
         system(cmd)
       end
 
-      def command(src, dest)
+      def command(src, paths)
         cmd = [ "rsync",
                 options,
-                "--files-from=\"#{ list_of_files(dest).path }\"",
-                src.chomp(dest),
+                "--files-from=\"#{ list_of_files(paths).path }\"",
+                src,
                 host
               ].join(" ")
       end
 
-      def list_of_files(path)
+      def list_of_files(paths)
         file = Tempfile.new("rsync")
-        File.open(file, "w") { |f| f.puts(path) }
+        File.open(file, "w") do |f|
+          paths.each { |path| f.puts(path) }
+        end
         file
       end
 
