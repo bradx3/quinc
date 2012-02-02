@@ -1,4 +1,8 @@
-# quinc is abandoned. It was mainly an experiment for a project at work, and we ended up moving in a different direction. May as well leave it here for posterity...
+# quinc...
+
+is abandoned. 
+
+It was mainly an experiment for a project at work, and we ended up moving in a different direction. May as well leave it here for posterity...
 
 # quinc
 
